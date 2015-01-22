@@ -1,0 +1,10 @@
+name: SmitePlugin
+main: Hax.Bukkit.SmitePlugin.SmitePlugin
+version: 1.0
+
+commands:
+   smite:
+      description: This is a demo command.
+      usage: /smite
+      permission: SmitePlugin.smite
+      permission-message: You don't have <permission>
