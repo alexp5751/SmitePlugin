@@ -2,7 +2,9 @@ package Hax.Bukkit.SmitePlugin;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -28,9 +30,18 @@ public class SmiteCommandExecutor implements CommandExecutor {
 			Player pSender = (Player) sender;
 			if (args.length > 2) {
 				try {
-					if (args[0].equals("~")) { args[0] = Integer.toString(pSender.getLocation().getBlockX()); }
-					if (args[1].equals("~")) { args[0] = Integer.toString(pSender.getLocation().getBlockY()); }
-					if (args[2].equals("~")) { args[0] = Integer.toString(pSender.getLocation().getBlockZ()); }
+					if (args[0].startsWith("~")) { 
+						args[0] = Integer.toString(pSender.getLocation().getBlockX() + 
+								Integer.parseInt(args[0].substring(1).length() > 0 ? args[0].substring(1) : "0"));
+					}
+					if (args[1].startsWith("~")) { 
+						args[1] = Integer.toString(pSender.getLocation().getBlockY() + 
+								Integer.parseInt(args[1].substring(1).length() > 0 ? args[1].substring(1) : "0"));
+					}
+					if (args[2].startsWith("~")) { 
+						args[2] = Integer.toString(pSender.getLocation().getBlockZ() + 
+								Integer.parseInt(args[2].substring(1).length() > 0 ? args[2].substring(1) : "0"));
+					}
 					smiteLocation(pSender, Integer.parseInt(args[0]), Integer.parseInt(args[1]), Integer.parseInt(args[2]));
 				} catch (NumberFormatException e) {
 					pSender.sendMessage("Invalid location.");
@@ -142,7 +153,10 @@ public class SmiteCommandExecutor implements CommandExecutor {
 				type = Material.DIRT;
 			}
 			FallingBlock debris = target.getWorld().spawnFallingBlock(target, type, (byte) 10);
-			debris.setVelocity(new Vector(Math.random() * 1.5 - 0.75, Math.random() * 1 + 1, Math.random() * 1.5 - 0.75));
+			double x = Math.random() * 2 - 1.25;//r.nextInt(21) / 10.0 - 1;
+			double y = Math.random() * 2 - 1;
+			double z = Math.random() * 2 - 1.25;
+			debris.setVelocity(new Vector(x, y, z));
 		}
 	}
 }

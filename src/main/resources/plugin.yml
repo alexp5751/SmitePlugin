@@ -4,7 +4,7 @@ version: 1.0
 
 commands:
    smite:
-      description: This is a demo command.
-      usage: /smite
+      description: This command absolutely obliterates players, entities, and specified locations.
+      usage: /smite [x] [y] [z] OR /smite playerName OR /smite @p, @a, @r, or @e
       permission: SmitePlugin.smite
-      permission-message: You don't have <permission>
+      permission-message: You don't have the permissions, friend.
