@@ -130,7 +130,6 @@ public class SmiteCommandExecutor implements CommandExecutor {
 		throwBlocks(type, target);
 		sender.getWorld().strikeLightning(target);
 		sender.getWorld().createExplosion(target, 10f, true);
-		sender.sendMessage("You smote " + target.getBlockX() + " " + target.getBlockY() + " " + target.getBlockZ());
 	}
 	
 	private void smiteEntity(Player sender, Entity target) {
